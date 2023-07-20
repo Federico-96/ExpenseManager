@@ -1,6 +1,12 @@
 import * as express from 'express';
-import * as cashInController from './cashIn.controller';
+import {getCashInByID, getCashIn, residueCashInByID, totalResidueCashIn, createCashIn} from './cashIn.controller';
 
-export const router = express.Router();
+const router = express.Router();
 
-router.get('/', cashInController.getCashInByID);
+router.get('/:ID', getCashInByID);
+router.get('/', getCashIn);
+// router.get('/', residueCashInByID);
+// router.get('/', totalResidueCashIn);
+router.put('/', createCashIn);
+
+export default router;
