@@ -3,10 +3,10 @@ import {getCashInByID, getCashIn, residueCashInByID, totalResidueCashIn, createC
 
 const router = express.Router();
 
-router.get('/:ID', getCashInByID);
+// router.get('/:ID', getCashInByID);
 router.get('/', getCashIn);
-// router.get('/', residueCashInByID);
-// router.get('/', totalResidueCashIn);
+router.get('/residue/:ID', residueCashInByID);
+router.get('/residue', totalResidueCashIn);
 router.put('/', createCashIn);
 
 export default router;
