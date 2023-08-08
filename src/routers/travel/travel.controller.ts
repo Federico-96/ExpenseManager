@@ -15,7 +15,14 @@ export const creatTravel = async function (req: Request, res: Response) {
 export const getAllTravel = async function (req: Request, res: Response) {
     try {
         const allTraver = await axios.get('https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/travel.json');
-        res.json(allTraver.data);
+        const arrayTravel = [];
+        for (const key in allTraver.data) {
+            arrayTravel.push({
+                ID: key,
+                ...allTraver.data[key]
+            })
+        }
+        res.json(arrayTravel);
     } catch (error) {
         res.status(400).json(error);
     }
@@ -35,7 +42,7 @@ export const getTravelByID = async function (req: Request, res: Response) {
 export const editTravel = async function (req: Request, res: Response) {
     try {
         const travelByID = await axios.get(`https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/travel/${req.params.ID}.json`);
-        const newTravel = {...travelByID.data, ...req.body};
+        const newTravel = { ...travelByID.data, ...req.body };
         const updareTravel = await axios.put(`https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/travel/${req.params.ID}.json`, newTravel);
         res.json(updareTravel.data);
     } catch (error) {

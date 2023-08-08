@@ -15,7 +15,14 @@ export const createFuel = async function (req: Request, res: Response) {
 export const getAllFuel = async function (req: Request, res: Response) {
     try {
         const allFuel = await axios.get('https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/fuel.json');
-        res.json(allFuel.data);
+        const fuelArray = [];
+        for (const key in allFuel.data) {
+            fuelArray.push({
+                ID: key,
+                ...allFuel.data[key]
+            })
+        }
+        res.json(fuelArray);
     } catch (error) {
         res.status(400).json(error);
     }
