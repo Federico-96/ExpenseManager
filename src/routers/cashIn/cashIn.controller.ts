@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import cashInMock from "./cashIn.mock";
 import axios from 'axios';
 
 // GET BY ID
@@ -69,11 +68,11 @@ export const residueCashInByID = function (req: any, res: any) {
 export const totalResidueCashIn = async function (req: Request, res: Response) {
   const travel = await axios.get(`https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/travel.json`);
   const fuel = await axios.get(`https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/fuel.json`);
-  
-  const totalResidue = cashInMock.reduce((prev, cur) => {
-    return (prev += cur.amount);
-  }, 0);
-  res.json(totalResidue);
+
+  // const totalResidue = cashInMock.reduce((prev, cur) => {
+  //   return (prev += cur.amount);
+  // }, 0);
+  res.json(10);
 };
 
 // CREATE
