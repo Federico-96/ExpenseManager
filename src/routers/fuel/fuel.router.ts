@@ -1,8 +1,12 @@
 import * as express from 'express';
-// import {getCashInByID, getCashIn, residueCashInByID, totalResidueCashIn, createCashIn} from './fuel.controller';
+import {createFuel, getAllFuel, getFuelByID, editFuel, deleteFuel} from './fuel.controller';
 
 const router = express.Router();
 
-
+router.post('/', createFuel);
+router.get('/', getAllFuel);
+router.get('/:ID', getFuelByID);
+router.put('/:ID', editFuel);
+router.delete('/:ID', deleteFuel);
 
 export default router;

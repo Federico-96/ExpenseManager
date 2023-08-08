@@ -1,11 +1,13 @@
 import * as express from "express";
 import cashInRouter from './routers/cashIn/cashIn.router';
+import fuelRouter from './routers/fuel/fuel.router';
+import travelRouter from './routers/travel/travel.router'
 
 const server = express.default();
 server.use(express.json());
 
-// server.use('/fuel', fuelRouter);
-// server.use('/travel', travelRouter);
+server.use('/fuel', fuelRouter);
+server.use('/travel', travelRouter);
 server.use('/cashIn', cashInRouter);
 
 

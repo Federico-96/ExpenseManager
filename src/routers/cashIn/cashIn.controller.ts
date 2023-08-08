@@ -47,7 +47,7 @@ export const getCashIn = async function (req: Request, res: Response) {
     // }
     // const x = await Promise.all(requestPUT)
     
-    const response = await axios.put(`https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/cashin/${req.params.ID}`, bodyPUT);
+    const response = await axios.put(`https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/cashin/${req.params.ID}.json`, bodyPUT);
     res.json(response.data)
   
   } catch (error) {
