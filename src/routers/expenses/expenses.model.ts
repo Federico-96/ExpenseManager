@@ -1,17 +1,17 @@
 export class Expenses {
-    type: String;
+    type: string;
     amount: number;
     date: Date;
-    cashInID: String;
-    note?: null | String;
-    destination?: String;
+    cashInID: string;
+    note?: null | string;
+    destination?: string;
     constructor(
-        type: String,
+        type: string,
         amount: number,
         date: Date,
-        cashInID: String,
-        note: null | String,
-        destination: String
+        cashInID: string,
+        note: null | string,
+        destination: string
     ) {
         this.type = type;
         this.amount = amount;
