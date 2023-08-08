@@ -66,16 +66,10 @@ export const residueCashInByID = function (req: any, res: any) {
 };
 
 // GET TOTAL RESIDUE CASH
-export const totalResidueCashIn = function (req: any, res: any) {
-  // const residueArray = cashInMock.map((cash) => {
-  //     let partResidue = [cash.amount]
-  //     return partResidue
-  // })
-  // let totalResidue = 0;
-  // residueArray.forEach((element) => {
-  //     totalResidue += element[0]
-  // })
-
+export const totalResidueCashIn = async function (req: Request, res: Response) {
+  const travel = await axios.get(`https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/travel.json`);
+  const fuel = await axios.get(`https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/fuel.json`);
+  
   const totalResidue = cashInMock.reduce((prev, cur) => {
     return (prev += cur.amount);
   }, 0);
@@ -83,10 +77,9 @@ export const totalResidueCashIn = function (req: any, res: any) {
 };
 
 // CREATE
-export const createCashIn = async function (req: any, res: Response) {
+export const createCashIn = async function (req: Request, res: Response) {
   try {
     const response = await axios.post('https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/cashin.json', req.body)
-    console.log(response);
     res.json(response.data.name);
   } catch (error) {
     res.status(400).json(error);
