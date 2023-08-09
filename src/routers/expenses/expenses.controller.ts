@@ -1,15 +1,12 @@
 import { Request, Response } from 'express';
-import axios from 'axios';
 import * as expensesService from './expenses.service';
+
 
 // CREAT
 export const createExpenses = async function (req: Request, res: Response) {
     try {
-        const espenses = await axios.post(
-            'https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/expenses.json',
-            req.body
-        );
-        res.json(espenses.data.name);
+        const expenses = await expensesService.create(req.body);
+        res.json(expenses.data.name);
     } catch (error) {
         res.status(400).json(error);
     }
@@ -38,14 +35,7 @@ export const getExpensesByID = async function (req: Request, res: Response) {
 //UPDATE
 export const editExpenses = async function (req: Request, res: Response) {
     try {
-        const expensesByID = await axios.get(
-            `https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/expenses/${req.params.ID}.json`
-        );
-        const newExpenses = { ...expensesByID.data, ...req.body };
-        const responseExpenses = await axios.put(
-            `https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/expenses/${req.params.ID}.json`,
-            newExpenses
-        );
+        const responseExpenses = await expensesService.updateByID(req.params.ID, req.body);
         res.json(responseExpenses.data);
     } catch (error) {
         res.status(400).json(error);
@@ -55,10 +45,8 @@ export const editExpenses = async function (req: Request, res: Response) {
 //DELETE
 export const deleteExpenses = async function (req: Request, res: Response) {
     try {
-        await axios.delete(
-            `https://notaspesa-default-rtdb.europe-west1.firebasedatabase.app/expenses/${req.params.ID}.json`
-        );
-        res.json(`record with ID: ${req.params.ID} was deleted`);
+        const deleted = await expensesService.deleteByID(req.params.ID);
+        res.json(deleted);
     } catch (error) {
         res.status(400).json(error);
     }

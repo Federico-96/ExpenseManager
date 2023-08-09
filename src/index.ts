@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import * as express from 'express';
 import cashInRouter from './routers/cashIn/cashIn.router';
 import expensesRouter from './routers/expenses/expenses.router';
@@ -13,7 +15,7 @@ server.use('/cashIn', cashInRouter);
 server.use('/expenses', expensesRouter);
 
 
-const PORT = 8080;
+const PORT = process.env.PORT || '3000';
 server.listen(PORT, ()=> {
     console.log(`server listen on address: http://localhost:${PORT}`);
 });
