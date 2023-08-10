@@ -1,13 +1,13 @@
 export class CashIn {
 	amount: number;
 	residue: number;
-	startDate: Date;
+	startDate: string; // date in string format YYYY-MM-DD
 	note: null | string;
 	endDate?: Date;
 	constructor(
 		amount: number,
 		residue: number,
-		startDate: Date,
+		startDate: string,
 		note: null | string,
 		endDate?: Date
 	) {
@@ -24,7 +24,7 @@ export class EntityCashIn extends CashIn {
     constructor(
         amount: number,
 		residue: number,
-        startDate: Date,
+        startDate: string,
         note: null | string,
         id: string,
 		endDate?: Date) {
