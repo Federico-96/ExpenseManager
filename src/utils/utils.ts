@@ -1,4 +1,4 @@
-import { EntityCashIn } from '../routers/cashIn/cashIn.model';
+// import { EntityCashIn } from '../routers/cashIn/cashIn.model';
 // import { EntityExpenses } from "../routers/expenses/expenses.model";
 export default class UTILS {
 	/**
@@ -17,7 +17,7 @@ export default class UTILS {
 		return arrayObject;
 	}
 
-	static sumAttributeOfObj (entityObject: EntityCashIn[]): number {
+	static sumAttributeOfObj (entityObject: any[]): number {
 		const total = entityObject.reduce((prev, cur)=> {
 			return (prev += cur.amount);
 		}, 0);
