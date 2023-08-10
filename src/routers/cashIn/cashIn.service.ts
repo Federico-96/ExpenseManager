@@ -42,6 +42,14 @@ export const getTotResidue =async () => {
     return sumOfCashIn - sumOfExpenses;
 };
 
+export const getResidueByID =async (id: string) => {
+    const cashInID = await axios.get(`${baseUrl}cashin/${id}.json`);
+    const expensesByCashIn = await axios.get(`${baseUrl}expenses.json?orderBy="cashInID"&equalTo="${id}"`);
+    const arrayExpenses = UTILS.trasfpormEntityToArray(expensesByCashIn.data);
+    const sumExpenses = UTILS.sumAttributeOfObj(arrayExpenses);
+    return (cashInID.data.amount - sumExpenses);
+};
+
         // GET ALL 
         // if (Object.prototype.hasOwnProperty.call(response.data, '-NbECVRYvEXPV79iu4ji')) { 
         // controlla se esiste uyna proprietà all'interno di un oggetto

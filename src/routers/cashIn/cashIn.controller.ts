@@ -63,14 +63,14 @@ export const totalResidueCashIn = async function (req: Request, res: Response) {
 };
 
 // GET RESIDUE CASH BY ID
-// export const residueCashInByID = function (req: any, res: any) {
-// 	// const residueByID = cashInMock.find((c) => c.ID === req.params.ID);
-// 	// if (!!residueByID) {
-// 	//   res.json(residueByID.amount);
-// 	// } else {
-// 	//   res.status(404).send("ID not found");
-// 	// }
-// };
+export const residueCashInByID = async function (req: Request, res: Response) {
+	try {
+    const residueByID = await cashInService.getResidueByID(req.params.ID);
+    res.json(residueByID);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
 
 
 
