@@ -1,12 +1,12 @@
 import * as express from 'express';
-import {createExpenses, getAllExpenses, getExpensesByID, editExpenses, deleteExpenses} from './expenses.controller';
+import * as expensesController from './expenses.controller';
 
 const router = express.Router();
 
-router.post('/', createExpenses);
-router.get('/', getAllExpenses);
-router.get('/:ID', getExpensesByID);
-router.put('/:ID', editExpenses);
-router.delete('/:ID', deleteExpenses);
+router.post('/', expensesController.createExpenses);
+router.get('/', expensesController.getAllExpenses);
+router.get('/:ID', expensesController.getExpensesByID);
+router.put('/:ID', expensesController. updateExpenses);
+router.delete('/:ID', expensesController.deleteExpenses);
 
 export default router;

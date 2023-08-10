@@ -24,7 +24,8 @@ export class Expenses {
 
 export class EntityExpenses extends Expenses {
     ID: string;
-    constructor(type: string,
+    constructor(
+        type: string,
         amount: number,
         date: Date,
         cashInID: string,

@@ -33,7 +33,7 @@ export const getExpensesByID = async function (req: Request, res: Response) {
 };
 
 //UPDATE
-export const editExpenses = async function (req: Request, res: Response) {
+export const updateExpenses = async function (req: Request, res: Response) {
     try {
         const responseExpenses = await expensesService.updateByID(req.params.ID, req.body);
         res.json(responseExpenses.data);

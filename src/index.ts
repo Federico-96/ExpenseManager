@@ -3,8 +3,7 @@ dotenv.config();
 import * as express from 'express';
 import cashInRouter from './routers/cashIn/cashIn.router';
 import expensesRouter from './routers/expenses/expenses.router';
-// import fuelRouter from './routers/fuel/fuel.router';
-// import travelRouter from './routers/travel/travel.router';
+
 
 const server = express.default();
 server.use(express.json());
