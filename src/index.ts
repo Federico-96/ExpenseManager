@@ -10,7 +10,7 @@ server.use(express.json());
 
 // server.use('/fuel', fuelRouter);
 // server.use('/travel', travelRouter);
-server.use('/cashIn', cashInRouter);
+server.use('/cashin', cashInRouter);
 server.use('/expenses', expensesRouter);
 
 
