@@ -5,7 +5,7 @@ import { EntityExpenses, Expenses } from './expenses.model';
 import { EntityCashIn } from '../cashIn/cashIn.model';
 
 const baseUrl = process.env.BASE_URL_DATABASE;
-// const cashInUrl = ``
+
 export const create = async (bodyReq: Expenses) => {
     const expenses = await axios.post(`${baseUrl}expenses.json`, bodyReq);
     const checkCashIn = await axios.get<EntityCashIn>(`${baseUrl}cashin/${bodyReq.cashInID}.json`);
@@ -15,11 +15,10 @@ export const create = async (bodyReq: Expenses) => {
             const cashInDate = new Date(checkCashIn.data.startDate);
             cashInDate.setMonth(cashInDate.getMonth() + 1);
             const queryFilter = `?orderBy="startDate"&equalTo="${UTILS.getDateFormatted(cashInDate)}"`;
-
             const cashInByPeriods = await axios.get<EntityCashIn>(`${baseUrl}cashin.json${queryFilter}`);
             const cashInByPeriod = UTILS.trasfpormEntityToArray(cashInByPeriods.data)[0];
             const newResidue = cashInByPeriod.residue - partResidue;
-            await serviceCashIn.updateByID(bodyReq.cashInID, { residue: 0 });
+            await serviceCashIn.updateByID(bodyReq.cashInID, { residue: 0, active: false });
             await serviceCashIn.updateByID(cashInByPeriod.ID, {...cashInByPeriod, residue: newResidue});
         } else {
             const residue = checkCashIn.data.residue - bodyReq.amount;

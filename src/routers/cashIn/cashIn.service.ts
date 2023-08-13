@@ -19,18 +19,18 @@ export const getAll = async () => {
 
 };
 
-export const updateByID =async (id: string, bodyReq: object) => {
+export const updateByID = async (id: string, bodyReq: object) => {
     const updateCashInByID = await axios.get(`${baseUrl}cashin/${id}.json`);
     const bodyPUT = { ...updateCashInByID.data, ...bodyReq };
     return await axios.put(`${baseUrl}cashin/${id}.json`, bodyPUT);
 };
 
-export const deleteByID =async (id: string) => {
+export const deleteByID = async (id: string) => {
     await axios.delete(`${baseUrl}cashin/${id}.json`);
     return `record with ID: ${id} was deleted`;
 };
 
-export const getTotResidue =async () => {
+export const getTotResidue = async () => {
     const cashIn = await axios.get(`${baseUrl}cashin.json`);
     const arrayCashIn = UTILS.trasfpormEntityToArray(cashIn.data);
     const sumOfCashIn = UTILS.sumAttributeOfObj(arrayCashIn);
@@ -52,7 +52,7 @@ export const getResidueByID =async (id: string) => {
 
         // GET ALL 
         // if (Object.prototype.hasOwnProperty.call(response.data, '-NbECVRYvEXPV79iu4ji')) { 
-        // controlla se esiste uyna proprietà all'interno di un oggetto
+        // controlla se esiste una proprietà all'interno di un oggetto
         //     console.log(true)
         // } else {
         //   console.log(false)
