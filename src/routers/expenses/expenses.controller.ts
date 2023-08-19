@@ -5,7 +5,8 @@ import * as expensesService from './expenses.service';
 // CREAT
 export const createExpenses = async function (req: Request, res: Response) {
     try {
-        const expenses = await expensesService.create(req.body);
+        const token = req.headers.authorization!.split(' ')[1];
+        const expenses = await expensesService.create(req.body, token);
         res.json(expenses.data.name);
     } catch (error) {
         res.status(400).json(error);
@@ -15,7 +16,8 @@ export const createExpenses = async function (req: Request, res: Response) {
 // GET ALL
 export const getAllExpenses = async function (req: Request, res: Response) {
     try {
-        const expensesArray = await expensesService.getAll();
+        const token = req.headers.authorization!.split(' ')[1];
+        const expensesArray = await expensesService.getAll(token);
         res.json(expensesArray);
     } catch (error) {
         res.status(400).json(error);
@@ -25,7 +27,8 @@ export const getAllExpenses = async function (req: Request, res: Response) {
 //GET BY ID
 export const getExpensesByID = async function (req: Request, res: Response) {
     try {
-        const expensesByID = await expensesService.getByID(req.params.ID);
+        const token = req.headers.authorization!.split(' ')[1];
+        const expensesByID = await expensesService.getByID(req.params.ID, token);
         res.json(expensesByID);
     } catch (error) {
         res.status(400).json(error);
@@ -35,7 +38,8 @@ export const getExpensesByID = async function (req: Request, res: Response) {
 //UPDATE
 export const updateExpenses = async function (req: Request, res: Response) {
     try {
-        const responseExpenses = await expensesService.updateByID(req.params.ID, req.body);
+        const token = req.headers.authorization!.split(' ')[1];
+        const responseExpenses = await expensesService.updateByID(req.params.ID, req.body, token);
         res.json(responseExpenses.data);
     } catch (error) {
         res.status(400).json(error);
@@ -45,7 +49,8 @@ export const updateExpenses = async function (req: Request, res: Response) {
 //DELETE
 export const deleteExpenses = async function (req: Request, res: Response) {
     try {
-        const deleted = await expensesService.deleteByID(req.params.ID);
+        const token = req.headers.authorization!.split(' ')[1];
+        const deleted = await expensesService.deleteByID(req.params.ID, token);
         res.json(deleted);
     } catch (error) {
         res.status(400).json(error);

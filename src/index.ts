@@ -3,15 +3,24 @@ dotenv.config();
 import * as express from 'express';
 import cashInRouter from './routers/cashIn/cashIn.router';
 import expensesRouter from './routers/expenses/expenses.router';
-
+import authRouter from './routers/auth/auth.router';
 
 const server = express.default();
 server.use(express.json());
 
-// server.use('/fuel', fuelRouter);
-// server.use('/travel', travelRouter);
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// server.use((req, res, next)=>{
+//     console.log('middleware');
+
+
+//     next();
+//    });
+
+
 server.use('/cashin', cashInRouter);
 server.use('/expenses', expensesRouter);
+server.use('/auth', authRouter);
 
 
 const PORT = process.env.PORT || '3000';
