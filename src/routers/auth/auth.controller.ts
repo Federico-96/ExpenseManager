@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
-import axios from 'axios';
 import { Request, Response } from 'express';
+import * as authService from './auth.service';
+
 export const login = async function (req: Request, res: Response){
     try {
         const body = {
@@ -8,7 +9,7 @@ export const login = async function (req: Request, res: Response){
             password: req.body.password,
             returnSecureToken: true
         };
-        const response = await axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCwDD4ZFu8Dzr6Ydf6kR2bdOHGjQpoIJKk', body);
+        const response = await authService.login(body);
         res.json(response.data);
     } catch (error) {
         throw new Error(error as any);
